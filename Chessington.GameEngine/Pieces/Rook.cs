@@ -24,9 +24,6 @@ namespace Chessington.GameEngine.Pieces
                     availableSquares.Add(Square.At(currentPosition.Row, i));
                 }
             }
-
-            availableSquares.Add(Square.At(currentPosition.Row - 1, currentPosition.Col));
-
             return availableSquares;
         }
     }
