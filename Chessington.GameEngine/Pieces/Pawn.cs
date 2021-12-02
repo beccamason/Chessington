@@ -15,21 +15,31 @@ namespace Chessington.GameEngine.Pieces
             Square currentPosition = board.FindPiece(this);
             var availableSquares = new List<Square>();
 
+            int x = currentPosition.Row;
+            int y = currentPosition.Col;
+
+            
+
             if (Player == Player.White)
             {
-                availableSquares.Add(Square.At(currentPosition.Row - 1, currentPosition.Col));
-                if (currentPosition.Row == whiteStart)
+                if (Square.At(x - 1, y) == null)
                 {
-                    availableSquares.Add(Square.At(currentPosition.Row - 2, currentPosition.Col));
+                    availableSquares.Add(Square.At(currentPosition.Row - 1, currentPosition.Col));
+                    if (currentPosition.Row == whiteStart && Square.At(x - 2, y) == null)
+                    {
+                        availableSquares.Add(Square.At(currentPosition.Row - 2, currentPosition.Col));
+                    }
                 }
-                
             }
             else if (Player == Player.Black)
             {
-                availableSquares.Add(Square.At(currentPosition.Row + 1, currentPosition.Col));
-                if (currentPosition.Row == blackStart)
-                {
-                    availableSquares.Add(Square.At(currentPosition.Row + 2, currentPosition.Col));
+                if (Square.At(x + 1, y) == null)
+                { 
+                    availableSquares.Add(Square.At(currentPosition.Row + 1, currentPosition.Col));
+                    if (currentPosition.Row == blackStart && Square.At(x+2, y) == null)
+                    {
+                        availableSquares.Add(Square.At(currentPosition.Row + 2, currentPosition.Col));
+                    }
                 }
             }
 
